@@ -49,8 +49,8 @@ def scene2(self: Slide):
             MathTex(r"\pi_1").set_opacity(0), MathTex(r"\pi_2").set_color(PURPLE), MathTex(r"\pi_3").set_color(PINK), MathTex(r"\pi_4").set_opacity(0), MathTex(r"\pi_5").set_color(YELLOW)
             ).arrange(RIGHT, buff=1.25).scale(0.6).shift(DOWN*1.1 , RIGHT * 3.4)
     weights2 = VGroup(
-            MathTex(r"\pi_1").set_opacity(0), MathTex(r"\pi_2").set_opacity(0), MathTex(r"p_3").set_color(PINK), MathTex(r"\pi_4").set_opacity(0), MathTex(r"\pi_5").set_opacity(0)
-            ).arrange(RIGHT, buff=1.25).scale(0.6).shift(DOWN*1.1 , RIGHT * 3.4)
+            MathTex(r"\pi_1").set_opacity(0), MathTex(r"\pi_2").set_opacity(0), MathTex(r"p").set_color(PINK), MathTex(r"\pi_4").set_opacity(0), MathTex(r"\pi_5").set_opacity(0)
+            ).arrange(RIGHT, buff=1.25).scale(0.6).shift(DOWN*1.1 , RIGHT * 3.41)
 
     chart_range = [0, 100, 25]
     graph_scale = 0.5
