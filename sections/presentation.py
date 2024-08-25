@@ -3,16 +3,19 @@ from manim_slides import Slide
 
 def presentation(self: Slide):
     # Mobjects
-    title = VGroup(
-            Text("¿Cómo se mide la polarización?", font_size=TEXT_LG, color=BLUE)
-            ).arrange(DOWN, buff=0.3)
 
-    description = Tex(r"Descubre cómo una app mide la polarización en\\las redes sociales con precisión y rigor científico")
-    description.font_size = TEXT_MD
+    background2 = ImageMobject("media/images/bg2.png").scale(1).set_opacity(0.1)
+    background1 = ImageMobject("media/images/bg1.png").scale(1).set_opacity(0.3)
+
+    self.add(background1)
+    self.bring_to_back(background1)
+
+    title = Text("¿Cómo se mide la polarización?", font_size=TEXT_LG*0.8, color=BLUE)
+    description = Text("Descubre cómo una app mide la polarización en\nlas redes sociales con precisión y rigor científico", font_size=TEXT_SM*1.1, line_spacing=0.5, slant=ITALIC)
 
     author = VGroup(
             Text("Jesús A. Aranda (PhD, Profesor UV)", font_size=TEXT_XS),
-            Text("Joan Sebastian Betancourt (Estudiante Ingeniería de Sistemas UV)", font_size=TEXT_XS)
+            Text("Joan Sebastian Betancourt (Investigador UV)", font_size=TEXT_XS)
             ).arrange(DOWN, buff=0.1, aligned_edge=LEFT).set_color(GRAY)
 
     logoUnivalle = ImageMobject("media/images/logoUnivalle.png").scale(0.43)
@@ -23,13 +26,16 @@ def presentation(self: Slide):
     # Styles
 
     # Positioning
-    logos.to_edge(UR)
+    logos.to_edge(UL)
     author.to_edge(DL)
 
-    main_content = VGroup(title, description).arrange(DOWN, buff=0.6)
+    main_content = VGroup(title, description).arrange(DOWN, buff=0.6, aligned_edge=LEFT)
     self.add(main_content, logos, author)
+
+    main_content.to_edge(LEFT)
 
     self.wait()
 
     self.next_slide()
-    self.play(FadeOut(main_content), FadeOut(logos), FadeOut(author))
+    self.play(FadeOut(background1), FadeIn(background2), FadeOut(main_content), FadeOut(logos), FadeOut(author), FadeOut(logoPromueva))
+    self.bring_to_back(background2)
