@@ -33,7 +33,7 @@ def scene2(self: Slide):
                     para llevar a toda la población a un consenso.
                     """, font_size=TEXT_SM, line_spacing=0.8)
     formal_definition = MathTex(r"Pol(\pi) = min_{p} \sum_i^n \pi_i^\alpha |x_i-p|^\beta", font_size=TEXT_MD)
-    source3 = Text("Nuestra definición: COMÉTÉ", font_size=TEXT_XS, color=GREY)
+    source3 = Text("Nuestra definición: Comète", font_size=TEXT_XS, color=GREY)
 
     our_definition = VGroup(our_text, formal_definition, source3).arrange(DOWN, buff=0.3, aligned_edge=LEFT)
 
