@@ -13,14 +13,10 @@ class PresentationSeminar(Slide):
         # Defaults
         Text.set_default(font="Noto Sans")
 
-
+        # Scenes
         presentation(self)
-
-
         scene0(self)
         scene1(self)
-
         scene2(self)
         scene3(self)
-
         final(self)

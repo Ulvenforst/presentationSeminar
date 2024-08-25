@@ -3,7 +3,6 @@ from manim_slides import Slide
 
 def presentation(self: Slide):
     # Mobjects
-
     background2 = ImageMobject("media/images/bg2.png").scale(1).set_opacity(0.1)
     background1 = ImageMobject("media/images/bg1.png").scale(1).set_opacity(0.3)
 
