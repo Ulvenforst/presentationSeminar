@@ -11,7 +11,8 @@ def presentation(self: Slide):
 
     author = VGroup(
             Text("Jesús A. Aranda (PhD, Profesor UV)", font_size=TEXT_XS),
-            Text("Joan Sebastian Betancourt (Investigador UV)", font_size=TEXT_XS)
+            Text("Joan Sebastian Betancourt (Investigador UV)", font_size=TEXT_XS),
+            Text("Juan Camilo Narváez Tascón (Estudiante UV)", font_size=TEXT_XS)
             ).arrange(DOWN, buff=0.1, aligned_edge=LEFT).set_color(GRAY)
 
     logoUnivalle = ImageMobject("media/images/logoUnivalle.png").scale(0.43)
