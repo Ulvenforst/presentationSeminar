@@ -46,11 +46,11 @@ def scene2(self: Slide):
             ).arrange(RIGHT, buff=1.25).scale(0.6).shift(DOWN * 1.75, RIGHT * 3.4)
 
 
-    pi2 = MathTex(r"\pi_2").set_color(PURPLE).scale(0.6).shift(DOWN*0.45 , RIGHT * 2.4)
-    pi3 = MathTex(r"\pi_3").set_color(PINK).scale(0.6).shift(UP*0.3,RIGHT * 3.4)
-    pi5 = MathTex(r"\pi_5").set_color(YELLOW).scale(0.6).shift(DOWN*0.45 , RIGHT * 5.4)
+    pi2 = MathTex(r"\pi_2").set_color(PURPLE).scale(0.6).shift(DOWN*0.48 , RIGHT * 2.4)
+    pi3 = MathTex(r"\pi_3").set_color(PINK).scale(0.6).shift(UP*0.27,RIGHT * 3.4)
+    pi5 = MathTex(r"\pi_5").set_color(YELLOW).scale(0.6).shift(DOWN*0.48 , RIGHT * 5.4)
 
-    p_cons = MathTex(r"p").set_color(PINK).scale(0.6).shift(UP*1.9 , RIGHT * 3.4)
+    p_cons = MathTex(r"p").set_color(PINK).scale(0.6).shift(UP*1.78 , RIGHT * 3.4)
 
     chart_range = [0, 100, 25]
     graph_scale = 0.5
