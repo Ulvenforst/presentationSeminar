@@ -39,18 +39,18 @@ def scene2(self: Slide):
 
     self.play(Write(our_definition))
 
-    self.next_slide()
+    self.wait(1)
 
     positions = VGroup(
             MathTex(r"x_1"), MathTex(r"x_2"), MathTex(r"x_3"), MathTex(r"x_4"), MathTex(r"x_5")
             ).arrange(RIGHT, buff=1.25).scale(0.6).shift(DOWN * 1.75, RIGHT * 3.4)
 
-    weights = VGroup(
-            MathTex(r"\pi_1").set_opacity(0), MathTex(r"\pi_2").set_color(PURPLE), MathTex(r"\pi_3").set_color(PINK), MathTex(r"\pi_4").set_opacity(0), MathTex(r"\pi_5").set_color(YELLOW)
-            ).arrange(RIGHT, buff=1.25).scale(0.6).shift(DOWN*1.1 , RIGHT * 3.4)
-    weights2 = VGroup(
-            MathTex(r"\pi_1").set_opacity(0), MathTex(r"\pi_2").set_opacity(0), MathTex(r"p").set_color(PINK), MathTex(r"\pi_4").set_opacity(0), MathTex(r"\pi_5").set_opacity(0)
-            ).arrange(RIGHT, buff=1.25).scale(0.6).shift(DOWN*1.1 , RIGHT * 3.41)
+
+    pi2 = MathTex(r"\pi_2").set_color(PURPLE).scale(0.6).shift(DOWN*0.45 , RIGHT * 2.4)
+    pi3 = MathTex(r"\pi_3").set_color(PINK).scale(0.6).shift(UP*0.3,RIGHT * 3.4)
+    pi5 = MathTex(r"\pi_5").set_color(YELLOW).scale(0.6).shift(DOWN*0.45 , RIGHT * 5.4)
+
+    p_cons = MathTex(r"p").set_color(PINK).scale(0.6).shift(UP*1.9 , RIGHT * 3.4)
 
     chart_range = [0, 100, 25]
     graph_scale = 0.5
@@ -72,11 +72,11 @@ def scene2(self: Slide):
     ).scale(graph_scale).shift(RIGHT * 3.6)
 
     self.play(our_definition.animate.scale(0.8).next_to(chart_random1, LEFT, buff=0.5))
-    self.play(Write(chart_random1), Write(positions), Write(weights))
+    self.play(Write(chart_random1), Write(positions), Write(pi2), Write(pi3), Write(pi5))
 
     self.next_slide()
 
-    self.play(Transform(chart_random1, chart_consensus), Transform(weights, weights2))
+    self.play(Transform(chart_random1, chart_consensus), Transform(pi2, p_cons), Transform(pi3, p_cons), Transform(pi5, p_cons))
 
     self.next_slide()
-    self.play(Unwrite(title), Unwrite(our_definition), FadeOut(chart_random1), FadeOut(positions), FadeOut(weights), FadeOut(weights2))
+    self.play(FadeOut(title), FadeOut(our_definition), FadeOut(chart_random1), FadeOut(positions), FadeOut(pi2), FadeOut(pi3),FadeOut(pi5), FadeOut(p_cons), FadeIn(self.background3), FadeOut(self.background4))

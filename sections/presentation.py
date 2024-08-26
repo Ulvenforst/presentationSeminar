@@ -3,11 +3,8 @@ from manim_slides import Slide
 
 def presentation(self: Slide):
     # Mobjects
-    background2 = ImageMobject("media/images/bg2.png").scale(1).set_opacity(0.1)
-    background1 = ImageMobject("media/images/bg1.png").scale(1).set_opacity(0.3)
-
-    self.add(background1)
-    self.bring_to_back(background1)
+    self.add(self.background1)
+    self.bring_to_back(self.background1)
 
     title = Text("¿Cómo se mide la polarización?", font_size=TEXT_LG*0.8, color=BLUE)
     description = Text("Descubre cómo una app mide la polarización en\nlas redes sociales con precisión y rigor científico", font_size=TEXT_SM*1.1, line_spacing=0.5, slant=ITALIC)
@@ -36,5 +33,5 @@ def presentation(self: Slide):
     self.wait()
 
     self.next_slide()
-    self.play(FadeOut(background1), FadeIn(background2), FadeOut(main_content), FadeOut(logos), FadeOut(author), FadeOut(logoPromueva))
-    self.bring_to_back(background2)
+    self.play(FadeOut(self.background1), FadeIn(self.background2), FadeOut(main_content), FadeOut(logos), FadeOut(author), FadeOut(logoPromueva))
+    self.bring_to_back(self.background2)
