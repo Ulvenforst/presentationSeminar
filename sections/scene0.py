@@ -6,8 +6,8 @@ def scene0(self: Slide):
     # Mobjects
     initial_values: MutableSequence =[0, 0, 0, 0, 0]
     random_values: MutableSequence =[27,18,9,15,31]
-    likert_values: MutableSequence =["Total desacuerdo", "Desacuerdo", "Neutral", "De acuerdo", "Total de acuerdo"]
-    proposition = Text("Afirmación: «El hombre debe de pagar por todo en la primer cita»", font_size=TEXT_SM, t2c={"Afirmación": BLUE})
+    likert_values: MutableSequence = ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
+    proposition = Text("Statement: 'The man must pay for everything on the first date.'", font_size=TEXT_SM, t2c={"Statement": BLUE})
     chart_likert = BarChart(
         values=initial_values,
         bar_names=likert_values,
@@ -22,7 +22,7 @@ def scene0(self: Slide):
     self.play(Write(proposition))
     self.play(Write(chart_likert))
 
-    self.next_slide()
+    self.wait(1)
 
     chart_random = BarChart(
         values=random_values,
@@ -38,5 +38,5 @@ def scene0(self: Slide):
     self.play(FadeIn(c_bar_lbls))
 
     self.next_slide()
-    self.play(FadeOut(proposition), FadeOut(chart_likert), FadeOut(c_bar_lbls), FadeOut(self.background2), FadeIn(self.background3))
-    self.bring_to_back(self.background3)
+    self.play(FadeOut(proposition), FadeOut(chart_likert), FadeOut(c_bar_lbls))
+    # self.bring_to_back(self.background3)

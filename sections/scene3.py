@@ -3,180 +3,104 @@ from manim_slides import Slide
 from svgelements.svgelements import MutableSequence
 
 def scene3(self: Slide):
-    title = Text("Midiendo los ejemplos", font_size=TEXT_SM, color=BLUE)
+    title = Text("Some general rules", font_size=TEXT_SM, color=BLUE)
     title.to_edge(UL)
 
-    likert_values: MutableSequence =["TD", "D", "N", "A", "TA"]
-    chart_range = [0, 60, 10]
+    axiom1_png = ImageMobject("media/images/axiom1.png")
+    axiom2_png = ImageMobject("media/images/axiom2.png")
+    axiom3_png = ImageMobject("media/images/axiom3.png")
 
-    graph_scale = 0.6
-
-    chart0_values: MutableSequence =[0,0,0,0,60]
-    chart01_values: MutableSequence =[30,0,0,0,30]
-    chart1_values: MutableSequence =[3,12,15,56,13]
-    chart2_values: MutableSequence =[45,5,3,4,43]
-    chart3_values: MutableSequence =[56,15,12,13,3]
-    chart4_values: MutableSequence =chart3_values[::-1]
-    chart5_values: MutableSequence =[0,50,0,0,50]
-    chart6_values: MutableSequence =[25,25,0,0,50]
-    chart7_values: MutableSequence =[25,0,50,0,25]
-    chart8_values: MutableSequence =[25,10,30,10,25]
-
-    pol_chart0 = Text("0%", font_size=TEXT_SM, color=GREY)
-    pol_chart01 = Text("100%", font_size=TEXT_SM, color=GREY)
-    pol_chart1 = Text("5.1%", font_size=TEXT_SM, color=GREY)
-    pol_chart2 = Text("77.5%", font_size=TEXT_SM, color=GREY)
-    pol_chart3 = Text("11%", font_size=TEXT_SM, color=GREY)
-    pol_chart4 = Text("11%", font_size=TEXT_SM, color=GREY)
-    pol_chart5 = Text("56.2%", font_size=TEXT_SM, color=GREY)
-    pol_chart6 = Text("52.5%", font_size=TEXT_SM, color=GREY)
-    pol_chart7 = Text("25%", font_size=TEXT_SM, color=GREY)
-    pol_chart8 = Text("26%", font_size=TEXT_SM, color=GREY)
-
-    chart_random0 = BarChart(
-        values=chart0_values,
-        bar_names=likert_values,
-        y_range=chart_range,
-        y_length=6,
-        x_length=10,
-        x_axis_config={"font_size": TEXT_MD},
-    ).scale(graph_scale)
-    chart0_pol = Group(chart_random0, pol_chart0).arrange(DOWN, buff=0.5)
-
-    chart_random01 = BarChart(
-        values=chart01_values,
-        bar_names=likert_values,
-        y_range=chart_range,
-        y_length=6,
-        x_length=10,
-        x_axis_config={"font_size": TEXT_MD},
-    ).scale(graph_scale)
-    chart01_pol = Group(chart_random01, pol_chart01).arrange(DOWN, buff=0.5)
-
-    charts0 = Group(chart0_pol, chart01_pol).arrange(RIGHT, buff=0.5)
-
-    c_bar_lbls0 = chart_random0.get_bar_labels(font_size=TEXT_SM)
-    c_bar_lbls01 = chart_random01.get_bar_labels(font_size=TEXT_SM)
-
+    axioms = Group(axiom1_png, axiom2_png, axiom3_png).arrange(RIGHT, buff=0.2)
+    
     self.play(Write(title))
-    self.play(FadeIn(charts0), FadeIn(c_bar_lbls0), FadeIn(c_bar_lbls01))
+    self.play(FadeIn(axioms))
+
+    self.next_slide()
+    self.play(FadeOut(title), FadeOut(axioms))
+
+    title2 = Text("Polarization measures", font_size=TEXT_SM, color=BLUE)
+    title2.to_edge(UL)
+
+    estebanRay = MathTex(r"\text{ER}_{\alpha}(M)=K \sum _{i=1}^n \sum _{j=1}^n \pi _{i}^{1+\alpha}\pi _{j} |x_i-x_j|").scale(0.7)
+    emd = MathTex(r"\mathrm{EMD}_\text{pol}(M)=0.5-\mathrm{EMD}(M,\pi_{\max})").scale(0.7)
+    shannon = MathTex(r"\text{Shannon}_{\text{pol}}(M) = -\sum_{i=1}^{n} \pi_i \log_2 \left( 1 - \frac{|x_i - \mu_{\vec{x}}|}{x_{\max} - x_{\min}} \right)").scale(0.7)
+    eijk = MathTex(r"\mathrm{Eijk}_{\text{pol}}(M) = 1- \sum_{i=1}^n \pi_i \cdot A_i").scale(0.7)
+    
+    pol_measures = VGroup(estebanRay, emd, shannon, eijk).arrange(DOWN, buff=0.5)
+
+    self.play(Write(title2), Write(pol_measures))
 
     self.next_slide()
 
+    self.play(FadeOut(pol_measures))
+
+    # Nueva escena con la definición en inglés
+    intro_text = Text("""
+                    Polarization is the minimum work required
+                    to bring the entire population to consensus.
+                    """, font_size=TEXT_SM, line_spacing=0.8)
+    formal_definition = MathTex(r"\text{MEC}_{\alpha,\beta}(M) = \min_{x_p} \sum_{i=1}^n \pi_{i}^\alpha |x_i-x_p|^\beta", font_size=TEXT_MD)
+    source3 = Text("Our definition: MEC", font_size=TEXT_XS, color=GREY)
+
+    our_definition = VGroup(intro_text, formal_definition, source3).arrange(DOWN, buff=0.3, aligned_edge=LEFT)
+
+    positions = VGroup(
+            MathTex(r"x_1"), MathTex(r"x_2"), MathTex(r"x_3"), MathTex(r"x_4"), MathTex(r"x_5")
+            ).arrange(RIGHT, buff=1.25).scale(0.6).shift(DOWN * 1.75, RIGHT * 3.4)
+
+    pi2 = MathTex(r"\pi_2").set_color(PURPLE).scale(0.6).shift(DOWN*0.48 , RIGHT * 2.4)
+    pi3 = MathTex(r"\pi_3").set_color(PINK).scale(0.6).shift(UP*0.27,RIGHT * 3.4)
+    pi5 = MathTex(r"\pi_5").set_color(YELLOW).scale(0.6).shift(DOWN*0.48 , RIGHT * 5.4)
+
+    p_cons = MathTex(r"p").set_color(PINK).scale(0.6).shift(UP*1.78 , RIGHT * 3.4)
+
+    chart_range = [0, 100, 25]
+    graph_scale = 0.5
+    chart1_values: MutableSequence = [0,25,50,0,25]
+    values_consensus: MutableSequence = [0,0,100,0,0]
     chart_random1 = BarChart(
         values=chart1_values,
-        bar_names=likert_values,
         y_range=chart_range,
         y_length=6,
         x_length=10,
         x_axis_config={"font_size": TEXT_MD},
-    ).scale(graph_scale)
-    chart1_pol = Group(chart_random1, pol_chart1).arrange(DOWN, buff=0.5)
-
-    chart_random2 = BarChart(
-        values=chart2_values,
-        bar_names=likert_values,
+    ).scale(graph_scale).shift(RIGHT * 3.6)
+    chart_consensus = BarChart(
+        values=values_consensus,
         y_range=chart_range,
         y_length=6,
         x_length=10,
         x_axis_config={"font_size": TEXT_MD},
-    ).scale(graph_scale)
-    chart2_pol = Group(chart_random2, pol_chart2).arrange(DOWN, buff=0.5)
+    ).scale(graph_scale).shift(RIGHT * 3.6)
 
-    charts1 = Group(chart1_pol, chart2_pol).arrange(RIGHT, buff=0.5)
-
-    c_bar_lbls1 = chart_random1.get_bar_labels(font_size=TEXT_SM)
-    c_bar_lbls2 = chart_random2.get_bar_labels(font_size=TEXT_SM)
-
-    self.play(Transform(charts0, charts1), Transform(c_bar_lbls0, c_bar_lbls1), Transform(c_bar_lbls01, c_bar_lbls2))
+    self.play(Write(our_definition))
+    self.play(our_definition.animate.scale(0.8).next_to(chart_random1, LEFT, buff=0.5))
+    self.play(Write(chart_random1), Write(positions), Write(pi2), Write(pi3), Write(pi5))
 
     self.next_slide()
 
-    chart_random3 = BarChart(
-        values=chart3_values,
-        bar_names=likert_values,
-        y_range=chart_range,
-        y_length=6,
-        x_length=10,
-        x_axis_config={"font_size": TEXT_MD},
-    ).scale(graph_scale)
-    chart3_pol = Group(chart_random3, pol_chart3).arrange(DOWN, buff=0.5)
-
-    chart_random4 = BarChart(
-        values=chart4_values,
-        bar_names=likert_values,
-        y_range=chart_range,
-        y_length=6,
-        x_length=10,
-        x_axis_config={"font_size": TEXT_MD},
-    ).scale(graph_scale)
-    chart4_pol = Group(chart_random4, pol_chart4).arrange(DOWN, buff=0.5)
-
-    charts2 = Group(chart3_pol, chart4_pol).arrange(RIGHT, buff=0.5)
-
-    c_bar_lbls3 = chart_random3.get_bar_labels(font_size=TEXT_SM)
-    c_bar_lbls4 = chart_random4.get_bar_labels(font_size=TEXT_SM)
-
-    self.play(Transform(charts0, charts2), Transform(c_bar_lbls0, c_bar_lbls3), Transform(c_bar_lbls01, c_bar_lbls4))
+    self.play(Transform(chart_random1, chart_consensus), Transform(pi2, p_cons), Transform(pi3, p_cons), Transform(pi5, p_cons))
 
     self.next_slide()
 
-    chart_random5 = BarChart(
-        values=chart5_values,
-        bar_names=likert_values,
-        y_range=chart_range,
-        y_length=6,
-        x_length=10,
-        x_axis_config={"font_size": TEXT_MD},
-    ).scale(graph_scale)
-    chart5_pol = Group(chart_random5, pol_chart5).arrange(DOWN, buff=0.5)
+    # Mostrar todas las medidas incluyendo las nuevas
+    bipol = MathTex(r"\text{BiPol}(M) := 4 \max_{A \cap B=\emptyset, A \cup B={x_1,...,x_n}} \dfrac{1}{n^2} \sum_{x \in A} \sum_{y \in B} |y-x|").scale(0.7)
+    mec = MathTex(r"\text{MEC}_{\alpha,\beta}(M) = \min_{x_p} \sum_{i=1}^n \pi_{i}^\alpha |x_i-x_p|^\beta").scale(0.7)
 
-    chart_random6 = BarChart(
-        values=chart6_values,
-        bar_names=likert_values,
-        y_range=chart_range,
-        y_length=6,
-        x_length=10,
-        x_axis_config={"font_size": TEXT_MD},
-    ).scale(graph_scale)
-    chart6_pol = Group(chart_random6, pol_chart6).arrange(DOWN, buff=0.5)
+    all_measures = VGroup(estebanRay, emd, shannon, eijk, mec, bipol).arrange(DOWN, buff=0.5).scale(0.8)
 
-    charts3 = Group(chart5_pol, chart6_pol).arrange(RIGHT, buff=0.5)
-
-    c_bar_lbls5 = chart_random5.get_bar_labels(font_size=TEXT_SM)
-    c_bar_lbls6 = chart_random6.get_bar_labels(font_size=TEXT_SM)
-
-    self.play(Transform(charts0, charts3), Transform(c_bar_lbls0, c_bar_lbls5), Transform(c_bar_lbls01, c_bar_lbls6))
+    self.play(
+        FadeOut(our_definition), 
+        FadeOut(chart_random1), 
+        FadeOut(positions), 
+        FadeOut(pi2), 
+        FadeOut(pi3),
+        FadeOut(pi5), 
+        FadeOut(p_cons)
+    )
+    
+    self.play(Write(all_measures))
 
     self.next_slide()
 
-    chart_random7 = BarChart(
-        values=chart7_values,
-        bar_names=likert_values,
-        y_range=chart_range,
-        y_length=6,
-        x_length=10,
-        x_axis_config={"font_size": TEXT_MD},
-    ).scale(graph_scale)
-    chart7_pol = Group(chart_random7, pol_chart7).arrange(DOWN, buff=0.5)
-
-    chart_random8 = BarChart(
-        values=chart8_values,
-        bar_names=likert_values,
-        y_range=chart_range,
-        y_length=6,
-        x_length=10,
-        x_axis_config={"font_size": TEXT_MD},
-    ).scale(graph_scale)
-    chart8_pol = Group(chart_random8, pol_chart8).arrange(DOWN, buff=0.5)
-
-    charts4 = Group(chart7_pol, chart8_pol).arrange(RIGHT, buff=0.5)
-
-    c_bar_lbls7 = chart_random7.get_bar_labels(font_size=TEXT_SM)
-    c_bar_lbls8 = chart_random8.get_bar_labels(font_size=TEXT_SM)
-
-    self.play(Transform(charts0, charts4), Transform(c_bar_lbls0, c_bar_lbls7), Transform(c_bar_lbls01, c_bar_lbls8))
-
-    self.next_slide()
-    self.wipe([title, charts0, c_bar_lbls0, c_bar_lbls01])
-
+    self.play(FadeOut(all_measures), FadeOut(title2))

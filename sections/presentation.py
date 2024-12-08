@@ -3,17 +3,18 @@ from manim_slides import Slide
 
 def presentation(self: Slide):
     # Mobjects
-    self.add(self.background1)
-    self.bring_to_back(self.background1)
+    # self.add(self.background1)
+    # self.bring_to_back(self.background1)
 
-    title = Text("¿Cómo se mide la polarización?", font_size=TEXT_LG*0.8, color=BLUE)
-    description = Text("Descubre cómo una app mide la polarización en\nlas redes sociales con precisión y rigor científico", font_size=TEXT_SM*1.1, line_spacing=0.5, slant=ITALIC)
+    title = Text("Polarization Measurements", font_size=TEXT_LG*0.8, color=BLUE)
+    description = Text("Investigative Practice 2024-II", font_size=TEXT_SM*1.1, line_spacing=0.5, slant=ITALIC)
 
     author = VGroup(
-            Text("Jesús A. Aranda (PhD, Profesor UV)", font_size=TEXT_XS),
-            Text("Joan Sebastian Betancourt (Investigador UV)", font_size=TEXT_XS),
-            Text("Juan Camilo Narváez Tascón (Estudiante UV)", font_size=TEXT_XS)
-            ).arrange(DOWN, buff=0.1, aligned_edge=LEFT).set_color(GRAY)
+            Text("Juan Camilo Narváez Tascón (Estudiante UV)" ),
+            Text("Juan Francisco D. Frías (PhD, Profesor UV)"),
+            Text("Jesús A. Aranda (PhD, Profesor UV)"),
+            Text("Frank D. Valencia (PhD, Profesor)"),
+            ).arrange(DOWN, buff=0.2, aligned_edge=LEFT).set_color(GRAY).scale(0.35)
 
     logoUnivalle = ImageMobject("media/images/logoUnivalle.png").scale(0.43)
     logoAvispa = ImageMobject("media/images/logoAvispa.png").scale(0.9)
@@ -34,5 +35,4 @@ def presentation(self: Slide):
     self.wait()
 
     self.next_slide()
-    self.play(FadeOut(self.background1), FadeIn(self.background2), FadeOut(main_content), FadeOut(logos), FadeOut(author), FadeOut(logoPromueva))
-    self.bring_to_back(self.background2)
+    self.play( FadeOut(main_content), FadeOut(logos), FadeOut(author), FadeOut(logoPromueva))

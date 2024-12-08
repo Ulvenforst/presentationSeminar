@@ -3,7 +3,7 @@ from manim_slides import Slide
 from svgelements.svgelements import MutableSequence
 
 def scene1(self: Slide):
-    title = Text("Más ejemplos", font_size=TEXT_SM, color=BLUE)
+    title = Text("Let's think about polarization", font_size=TEXT_SM, color=BLUE)
     title.to_edge(UL)
 
     likert_values: MutableSequence =["TD", "D", "N", "A", "TA"]
@@ -11,16 +11,18 @@ def scene1(self: Slide):
 
     graph_scale = 0.6
 
-    chart0_values: MutableSequence =[0,0,0,0,60]
-    chart01_values: MutableSequence =[30,0,0,0,30]
-    chart1_values: MutableSequence =[3,12,15,56,13]
-    chart2_values: MutableSequence =[45,5,3,4,43]
-    chart3_values: MutableSequence =[56,15,12,13,3]
-    chart4_values: MutableSequence =chart3_values[::-1]
-    chart5_values: MutableSequence =[0,50,0,0,50]
-    chart6_values: MutableSequence =[25,25,0,0,50]
-    chart7_values: MutableSequence =[25,0,50,0,25]
-    chart8_values: MutableSequence =[25,10,30,10,25]
+    chart0_values: MutableSequence =[20,20,20,20,20]
+    chart01_values: MutableSequence =[0,50,0,50,0]
+    chart1_values: MutableSequence =[0,50,0,50,0]
+    chart2_values: MutableSequence =[50,0,0,0,50]
+    chart3_values: MutableSequence =[33,0,33,0,33]
+    chart4_values: MutableSequence =[9,0,45,0,45]
+    chart5_values: MutableSequence =[30,0,33,0,36]
+    chart6_values: MutableSequence =[6,0,45,0,49]
+    chart7_values: MutableSequence =[25,0,25,0,50]
+    chart8_values: MutableSequence =[0,50,0,0,50]
+    chart9_values: MutableSequence =[45,0,45,0,10]
+    chart10_values: MutableSequence =[0,90,0,0,10]
 
     chart_random0 = BarChart(
         values=chart0_values,
@@ -157,4 +159,32 @@ def scene1(self: Slide):
     self.play(Transform(charts0, charts4), Transform(c_bar_lbls0, c_bar_lbls7), Transform(c_bar_lbls01, c_bar_lbls8))
 
     self.next_slide()
-    self.play(FadeOut(self.background3), FadeIn(self.background4),FadeOut(title), FadeOut(charts0), FadeOut(c_bar_lbls0), FadeOut(c_bar_lbls01))
+
+    chart_random9 = BarChart(
+        values=chart9_values,
+        bar_names=likert_values,
+        y_range=chart_range,
+        y_length=6,
+        x_length=10,
+        x_axis_config={"font_size": TEXT_MD},
+    ).scale(graph_scale)
+
+    chart_random10 = BarChart(
+        values=chart10_values,
+        bar_names=likert_values,
+        y_range=chart_range,
+        y_length=6,
+        x_length=10,
+        x_axis_config={"font_size": TEXT_MD},
+    ).scale(graph_scale)
+
+    charts5 = Group(chart_random9, chart_random10).arrange(RIGHT, buff=0.5)
+
+    c_bar_lbls9 = chart_random9.get_bar_labels(font_size=TEXT_SM)
+    c_bar_lbls10 = chart_random10.get_bar_labels(font_size=TEXT_SM)
+
+    self.play(Transform(charts0, charts5), Transform(c_bar_lbls0, c_bar_lbls9), Transform(c_bar_lbls01, c_bar_lbls10))
+
+    self.next_slide()
+
+    self.play(FadeOut(title), FadeOut(charts0), FadeOut(c_bar_lbls0), FadeOut(c_bar_lbls01))
